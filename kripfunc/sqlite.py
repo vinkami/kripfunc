@@ -1,5 +1,6 @@
 import sqlite3
 
+
 class Database:
     def __init__(self, name:str=":memory:"):
         """
@@ -7,12 +8,13 @@ class Database:
         :param name: The filename (path included) of the database file
         """
         self.db = sqlite3.connect(name)  # Database connection
-        self.cs =  self.db.cursor()  # Database cursor
+        self.cs = self.db.cursor()  # Database cursor
 
         # ez access
         self.do = self.cs.execute
         self.domany = self.cs.executemany
 
+    @staticmethod
     def _save(func):
         """
         A decorator to save / commit the changes after performing actions
